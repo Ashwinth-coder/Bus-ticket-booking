@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Functionality</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Centered Modal Section */
+    #full {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      width: 50%;
+      height: auto;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    /* Left Section */
+    .left-section {
+      width: 50%;
+      background-color: rgb(125, 38, 125); /* Purple background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .left-section img {
+      max-width: 80%;
+      height: auto;
+    }
+
+    /* Right Section */
+    .right-section {
+      width: 50%;
+      background-color: #fff;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .right-section h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #6c4db2;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .form-container input {
+      width: 100%;
+      max-width: 300px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .form-container button {
+      width: 100%;
+      max-width: 300px;
+      padding: 10px;
+      font-size: 1rem;
+      color: white;
+      background-color: #6c4db2;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .form-container button:hover {
+      background-color: #583a93;
+    }
+
+    .google-button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      width: 100%;
+      max-width: 300px;
+      background-color: white;
+      border: 1px solid #6c4db2;
+      color: #6c4db2;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .google-button:hover {
+      background-color: #6c4db2;
+      color: white;
+    }
+
+    .google-button img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .terms {
+      font-size: 0.9rem;
+      text-align: center;
+      color: gray;
+    }
+
+    .terms a {
+      color: #6c4db2;
+      text-decoration: none;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 0px 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .logo img {
+      height: 110px;
+    }
+
+    .navbar .center-menu {
+      display: flex;
+      gap: 20px;
+    }
+
+    .center-menu .menu-item {
+      display: flex;
+      align-items: center;
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      padding: 5px 15px;
+      cursor: pointer;
+      transition: all 1s ease;
+    }
+
+    .center-menu .menu-item:hover {
+      background-color: #e0e0e0;
+    }
+
+    .navbar .right-menu {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      cursor: pointer;
+    }
+
+    .right-menu .dropdown {
+      position: relative;
+    }
+
+    .right-menu .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      padding: 10px;
+      z-index: 1000;
+    }
+
+    .right-menu .dropdown-menu a {
+      display: block;
+      color: #333;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: all 0.2s ease;
+    }
+
+    .right-menu .dropdown-menu a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    /* Modal Styles */
+    #modal {
+      margin-bottom: 100%;
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      cursor: pointer;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 600px;
+      height: 500px;
+    }
+
+    .modal-content iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .modal-content button {
+      width: 100%;
+      padding: 10px;
+      background-color: red;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+    <!-- Navbar -->
+  <nav class="navbar">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="tradel1.png" alt="Company Logo">
+    </div>
+
+    <!-- Center Menu -->
+    <div class="center-menu">
+      <div class="menu-item">Bus Tickets</div>
+      <div class="menu-item">Train Tickets</div>
+    </div>
+
+    <!-- Right Menu -->
+    <div class="right-menu">
+      <div>Help</div>
+      <div class="dropdown">
+        <div>English</div>
+        <div class="dropdown-menu">
+          <a href="#">English</a>
+          <a href="#">Spanish</a>
+          <a href="#">French</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <div>Account</div>
+        <div class="dropdown-menu">
+          <a href="#">Cancel Ticket</a>
+          <a href="#">Change Travel Date</a>
+          <a href="#">Show My Ticket</a>
+          <a href="#">Email/SMS</a>
+          <a href="#" id="login-signup">Login/Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<!--   
+  <div id="modal">
+    <div class="modal-content">
+      <iframe src="signup.html"></iframe>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div> -->
+  <div id="full">
+    <div class="container">
+      <!-- Left Section -->
+      <div class="left-section">
+        <img src="Tradel_logo.png" alt="Logo">
+      </div>
+
+      <!-- Right Section -->
+      <div class="right-section">
+        <h2>Step into your journey – Sign in to reserve your path to greatness.</h2>
+        <div class="form-container">
+          <!-- Phone Input -->
+          <input id="phone" type="tel" placeholder="+91 9876543210" required>
+          <!-- Generate OTP Button -->
+          <button id="generate-otp">Generate OTP (One Time Password)</button>
+          
+          <!-- OTP Input (Initially Hidden) -->
+          <input id="otp" type="number" placeholder="Enter OTP" style="display: none;">
+          <!-- Verify OTP Button -->
+          <button id="verify-otp" style="display: none;">Verify OTP</button>
+
+          <div style="text-align: center; margin: 20px 0;"><b>OR</b>, connect using social accounts</div>
+          <!-- Google Sign-In Button -->
+          <button class="google-button">
+            <img src="google pic.png" alt="Google Logo">
+            Sign in with Google
+          </button>
+
+          <div class="terms">
+            By signing up, you agree to our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('full');
+    const loginSignup = document.getElementById('login-signup');
+
+    loginSignup.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.style.display = 'flex';
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+  </script>
+</body>
+</html>
